@@ -1,0 +1,3 @@
+if [[ $1 == "ls" ]]; then
+  ls $2 | grep -av "^kustomization.yaml$" | sed 's/^/- /'
+fi

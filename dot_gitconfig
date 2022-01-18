@@ -1,0 +1,23 @@
+[user]
+	name = Romain Barissat
+	email = romain-noreply@barissat.com
+	signingkey = 95164C2E9F64864F
+[credential]
+	helper = osxkeychain
+[core]
+	hooksPath = ~/.config/git/hooks
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
+[alias]
+	unstash = stash apply
+[format]
+	signOff = true
+[init]
+	defaultBranch = main

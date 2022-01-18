@@ -1,0 +1,71 @@
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
+# Terraform https://github.com/hashicorp/terraform/issues/21271#issuecomment-491424517
+unsetopt nomatch
+
+export CURRENT_AWS="echo \"\${AWS_PROFILE:-default}(\${AWS_DEFAULT_REGION:-\${AWS_REGION:-\$(cat ~/.aws/config | sed -n -E \"/\\\[((profile \$AWS_PROFILE)|\${AWS_PROFILE:-default})\\\]/,/\\[/p;/\\\[/d\" | grep region | cut -f2- -d=)}})\""
+
+alias serve='open http://localhost:8082 && hrs'
+alias kreset='kind delete cluster && curl -fsSL https://raw.githubusercontent.com/tilt-dev/kind-local/master/kind-with-registry.sh | bash'
+alias kind-reset='kreset'
+alias uncommit='git reset --soft HEAD^'
+alias pr='gh pr create --fill; gh pr edit --add-label automerge; gh pr view --web'
+alias rebase='current=$(git branch --show-current); git stash; git switch main; git pull; git switch $current; git rebase; git unstash'
+
+# Add NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/romain/.nvm/versions/node/v10.16.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+autoload -U +X bashcompinit && bashcompinit
+
+eval $(thefuck --alias)
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GPG_TTY=$(tty)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export GOPATH=$HOME/go 
+export PATH=$PATH:$GOPATH/bin
+PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin; PATH=$PATH:$ANDROID_HOME/emulator; PATH=$PATH:$ANDROID_HOME/platform-tools
+
+fpath=( ~/.zfuncs "${fpath[@]}" )
+freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
+autoload -Uz kc
+autoload -Uz ks
+
+eval "$(starship init zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT=""
+
+#source ~/.autoenv/activate.sh
+
+
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+
