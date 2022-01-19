@@ -1,0 +1,11 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+
+#!/bin/bash
+cd $(mktemp -d)
+git clone https://github.com/pgmodeler/pgmodeler.git && cd pgmodeler && git checkout main
+export HOMEBREW_PREFIX=$(brew --prefix)
+$HOMEBREW_PREFIX/opt/qt@5/bin/qmake PGSQL_LIB=$HOMEBREW_PREFIX/opt/libpq/lib/libpq.dylib PGSQL_INC=$HOMEBREW_PREFIX/opt/libpq/include -r pgmodeler.pro
+make -j $(expr $(getconf _NPROCESSORS_ONLN) + 1)
+make install
+
+{{ end -}}
