@@ -1,23 +1,38 @@
-[user]
-	name = Romain Barissat
-	email = romain-noreply@barissat.com
-	signingkey = 95164C2E9F64864F
-[credential]
-	helper = osxkeychain
+[alias]
+    unstash = stash apply
+
+[commit]
+    gpgsign = true
+
 [core]
 	hooksPath = ~/.config/git/hooks
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[commit]
-	gpgsign = true
-[gpg]
-	program = /usr/local/bin/gpg
-[alias]
-	unstash = stash apply
+	pager = delta
+
+[credential]
+    helper = osxkeychain
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	side-by-side = true
+[diff]
+	colorMoved = default
+
 [format]
-	signOff = true
+    signOff = true
+
+[gpg]
+    program = /opt/homebrew/bin/gpg
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only
+
+[merge]
+    conflictstyle = diff3
+
+[user]
+    name = Romain Barissat
+    email = romain-noreply@barissat.com
+    signingkey = 8E7C9AD0C0EB4B7C
