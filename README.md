@@ -7,13 +7,14 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
 ## Setup a new mac
 
 ```sh
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician
+xcode-select --install
+sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician --ssh
 ```
 
 My personal todo list of manual actions:
 
 - [ ] Open Alfred, click _Request Permissions_ in _General_
-- [ ] Connect to Firefox sync or copy profile folder(open _about:profiles_)
+- [ ] Connect to Firefox sync or copy profile folder (open _about:profiles_)
 
 Once everything is setup, reboot!
 

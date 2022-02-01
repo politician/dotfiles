@@ -170,6 +170,7 @@ defaults write com.apple.commerce AutoUpdate -bool true
 killall Alfred
 # Sync settings on iCloud
 defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "~/Library/Mobile Documents/com~apple~CloudDocs/Settings/Alfred"
+open /Applications/Alfred*
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Amphetamine settings
@@ -185,13 +186,14 @@ defaults write com.if.Amphetamine "Start Session At Launch" -bool true
 killall Docker
 defaults write com.docker.docker SUAutomaticallyUpdate -bool false
 defaults write com.docker.docker SUEnableAutomaticChecks -bool false
+open -a Docker
 
 # ---------------------------------------------------------------------------------------------------------------------
 # GPG settings
 # ---------------------------------------------------------------------------------------------------------------------
 gpg-connect-agent reloadagent /bye
 # Import known keys
-gpg --import {{ .chezmoi.sourceDir }}/keys/* 
+#gpg --import {{ .chezmoi.sourceDir }}/keys/* 
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Gopass settings
@@ -217,6 +219,7 @@ killall Moom
 defaults write com.manytricks.Moom SUEnableAutomaticChecks -bool false
 # Run as faceless mode
 defaults write com.manytricks.Moom "Application Mode" -int 2
+open -a Moom
 
 # ---------------------------------------------------------------------------------------------------------------------
 # OnlyOffice settings
@@ -228,5 +231,41 @@ defaults write asc.onlyoffice.ONLYOFFICE SUEnableAutomaticChecks -bool false
 defaults write asc.onlyoffice.ONLYOFFICE "asc_user_ui_theme" -string "theme-dark"
 # Set user name
 defaults write asc.onlyoffice.ONLYOFFICE "asc_user_name_app" -string "{{ .fullname }}"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# VSCodium settings
+# ---------------------------------------------------------------------------------------------------------------------
+codium --install-extension aaron-bond.better-comments
+codium --install-extension aprilandjan.ascii-tree-generator
+codium --install-extension BazelBuild.vscode-bazel
+codium --install-extension bungcip.better-toml
+codium --install-extension christian-kohler.path-intellisense
+codium --install-extension DavidAnson.vscode-markdownlint
+codium --install-extension debens.sort-js-object
+codium --install-extension ecmel.vscode-html-css
+codium --install-extension EditorConfig.EditorConfig
+codium --install-extension firefox-devtools.vscode-firefox-debug
+codium --install-extension golang.go
+codium --install-extension GraphQL.vscode-graphql
+codium --install-extension hashicorp.terraform
+codium --install-extension hilleer.yaml-plus-json
+codium --install-extension miclo.sort-typescript-imports
+codium --install-extension mrmlnc.vscode-attrs-sorter
+codium --install-extension ms-azuretools.vscode-docker
+codium --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+codium --install-extension nrwl.angular-console
+codium --install-extension PascalReitermann93.vscode-yaml-sort
+codium --install-extension redhat.vscode-commons
+codium --install-extension redhat.vscode-yaml
+codium --install-extension richie5um2.vscode-sort-json
+codium --install-extension robertoachar.vscode-essentials-snippets
+codium --install-extension SimonSiefke.svg-preview
+codium --install-extension streetsidesoftware.code-spell-checker
+codium --install-extension Tchoupinax.tilt
+codium --install-extension timonwong.shellcheck
+codium --install-extension Tyriar.sort-lines
+codium --install-extension vincaslt.highlight-matching-tag
+codium --install-extension vscode-icons-team.vscode-icons
+codium --install-extension wix.vscode-import-cost
 
 {{ end -}}

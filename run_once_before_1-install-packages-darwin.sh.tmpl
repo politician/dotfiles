@@ -1,5 +1,21 @@
+
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
+
+# Install homebrew
+if [ -z ${HOMEBREW_PREFIX+x} ]; then
+  sudo yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+{{ if eq .chezmoi.arch "arm64" }}
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else }}
+  eval "$(/usr/local/bin/brew shellenv)"
+{{ end }}
+fi
+
+# Install Rosetta on m1
+{{ if eq .chezmoi.arch "arm64" }}
+softwareupdate --install-rosetta --agree-to-license
+{{ end }}
 
 # Close App Store apps in case this script updates them
 killall Amphetamine iMovie OneDrive "The Unarchiver" Xcode XMind
@@ -67,6 +83,7 @@ brew "libpq"
 #brew "linkerd"
 brew "mas"
 #brew "mitmproxy"
+brew "nativefier"
 brew "nmap"
 #brew "nvm"
 #brew "octant"
@@ -116,6 +133,7 @@ cask "darktable"
 cask "docker"
 cask "ferdi"
 cask "finicky"
+cask "firefox"
 cask "firefox-developer-edition"
 cask "gimp"
 cask "gitify"
@@ -161,42 +179,14 @@ mas "Amphetamine", id: 937984704
 mas "iMovie", id: 408981434
 mas "OneDrive", id: 823766827
 mas "The Unarchiver", id: 425424353
-mas "Xcode", id: 497799835
+#mas "Xcode", id: 497799835
 mas "XMind", id: 1327661892
 EOF
 
-# VSCodium/VSCode extensions
-codium --install-extension aaron-bond.better-comments
-codium --install-extension aprilandjan.ascii-tree-generator
-codium --install-extension BazelBuild.vscode-bazel
-codium --install-extension bungcip.better-toml
-codium --install-extension christian-kohler.path-intellisense
-codium --install-extension DavidAnson.vscode-markdownlint
-codium --install-extension debens.sort-js-object
-codium --install-extension ecmel.vscode-html-css
-codium --install-extension EditorConfig.EditorConfig
-codium --install-extension firefox-devtools.vscode-firefox-debug
-codium --install-extension golang.go
-codium --install-extension GraphQL.vscode-graphql
-codium --install-extension hashicorp.terraform
-codium --install-extension hilleer.yaml-plus-json
-codium --install-extension miclo.sort-typescript-imports
-codium --install-extension mrmlnc.vscode-attrs-sorter
-codium --install-extension ms-azuretools.vscode-docker
-codium --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-codium --install-extension nrwl.angular-console
-codium --install-extension PascalReitermann93.vscode-yaml-sort
-codium --install-extension redhat.vscode-commons
-codium --install-extension redhat.vscode-yaml
-codium --install-extension richie5um2.vscode-sort-json
-codium --install-extension robertoachar.vscode-essentials-snippets
-codium --install-extension SimonSiefke.svg-preview
-codium --install-extension streetsidesoftware.code-spell-checker
-codium --install-extension Tchoupinax.tilt
-codium --install-extension timonwong.shellcheck
-codium --install-extension Tyriar.sort-lines
-codium --install-extension vincaslt.highlight-matching-tag
-codium --install-extension vscode-icons-team.vscode-icons
-codium --install-extension wix.vscode-import-cost
+# Install Xcode in background because the 12GB+ download can be slow as hell
+mas install 497799835 &>/dev/null &
+
+# Import known keys
+gpg --import {{ .chezmoi.sourceDir }}/keys/* 
 
 {{ end -}}
