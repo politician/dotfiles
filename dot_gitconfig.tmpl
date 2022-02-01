@@ -14,6 +14,7 @@
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	side-by-side = true
+    
 [diff]
 	colorMoved = default
 
@@ -21,7 +22,7 @@
     signOff = true
 
 [gpg]
-    program = /opt/homebrew/bin/gpg
+    program = {{ expandenv "$HOMEBREW_PREFIX/bin/gpg" }}
 
 [init]
     defaultBranch = main
@@ -33,6 +34,6 @@
     conflictstyle = diff3
 
 [user]
-    name = Romain Barissat
-    email = romain-noreply@barissat.com
-    signingkey = 8E7C9AD0C0EB4B7C
+    name = {{ .fullname }}
+    email = {{ .gitemail }}
+    signingkey = {{ .gpgkey }}

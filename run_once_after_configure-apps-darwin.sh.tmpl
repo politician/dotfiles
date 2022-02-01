@@ -1,0 +1,232 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+
+#!/bin/bash
+
+osascript -e 'tell application "System Preferences" to quit'
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Global settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Set default screenshot location
+defaults write com.apple.screencapture "location" -string "~/Documents/Screenshots" && killall SystemUIServer
+# Do not autogather large files when submitting a feedback report
+defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false" 
+# Disable automatic capitalization
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+# Enable smart dashes
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool true
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true && killall Photos
+# Save/Print modals are auto-expanded by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Security settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Enable TouchID for sudo
+! grep -q pam_tid.so /etc/pam.d/sudo && sudo gsed -i '2iauth        sufficient     pam_tid.so' /etc/pam.d/sudo
+# Disable Gatekeeper
+sudo spctl --master-disable
+# Open an application from the web without being asked
+# https://macos-defaults.com/misc/lsquarantine.html#disable-application-quarantine-message :(
+# defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Dock settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Set dock position
+defaults write com.apple.dock orientation -string "left"
+# Set the icon size of Dock items in pixels
+defaults write com.apple.dock "tilesize" -int 43
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+# Enable launch animation
+defaults write com.apple.dock launchanim -bool true
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+# Clear Dock of all default icons and set my own
+defaults write com.apple.dock persistent-others -array
+defaults write com.apple.dock persistent-apps -array\
+ '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Firefox.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'\
+ '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Mail.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'\
+ '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/VSCodium.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'\
+ '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Utilities/Terminal.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'\
+ '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/XMind.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+
+killall Dock
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Finder settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Show hidden files in the Finder
+defaults write com.apple.Finder "AppleShowAllFiles" -bool "true"
+# Allowing text selection in Quick Look/Preview in Finder by default
+defaults write com.apple.finder QLEnableTextSelection -bool true
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# Use list view in all Finder windows by default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder SearchRecentsSavedViewStyle -string "Nlsv"
+# Disable creation of metadata files on external volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# Empty Trash securely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+
+killall Finder
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Firewall settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Enable firewall
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
+
+#launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+#sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+#sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+#launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Mail settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall Mail
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Safari settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall Safari
+# Privacy: don’t send search queries to Apple
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+# Privacy: Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+# Disable AutoFill
+defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+defaults write com.apple.Safari AutoFillPasswords -bool false
+defaults write com.apple.Safari AutoFillCreditCardData -bool false
+defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
+# ---------------------------------------------------------------------------------------------------------------------
+# TextEdit settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall TextEdit
+# Set default TextEdit document format as plain text
+defaults write com.apple.TextEdit "RichText" -bool "false"
+# Open and save files as UTF-8
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Terminal settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Make sure Terminal is using the Basic profile
+defaults write com.apple.Terminal "Default Window Settings" -string Basic
+defaults write com.apple.Terminal "Startup Window Settings" -string Basic
+# Only use UTF-8
+defaults write com.apple.terminal StringEncodings -array 4
+# Set font preferences
+# Use "tell application \"Terminal\" to get the font name of window 1" to get the current font name
+osascript -e "tell application \"Terminal\" to set font name of settings set \"Basic\" to \"MesloLGLNerdFontComplete-Regular\""
+osascript -e "tell application \"Terminal\" to set font size of settings set \"Basic\" to 18"
+# Enable numpad support for Logitech MX Keys
+/usr/libexec/PlistBuddy -c "Delete :'Window Settings':Basic:StrictVTKeypad" ~/Library/Preferences/com.apple.Terminal.plist
+/usr/libexec/PlistBuddy -c "Add :'Window Settings':Basic:StrictVTKeypad bool false" ~/Library/Preferences/com.apple.Terminal.plist
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+chmod -R go-w "$(brew --prefix)/share"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Software Update settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Automatically check for updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+# Download updates automatically in the background
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true
+# Install macos updates automatically
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true
+# Install system data file updates automatically
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+# Install critical security updates automatically
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
+# Check for software updates daily, not just once per week
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# Install app updates automatically
+defaults write com.apple.commerce AutoUpdate -bool true
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Alfred settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall Alfred
+# Sync settings on iCloud
+defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "~/Library/Mobile Documents/com~apple~CloudDocs/Settings/Alfred"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Amphetamine settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall Amphetamine
+# Start session as soon as Amphetamine starts
+defaults write com.if.Amphetamine "Start Session At Launch" -bool true
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Docker settings
+# ---------------------------------------------------------------------------------------------------------------------
+# Disable automatic updates
+killall Docker
+defaults write com.docker.docker SUAutomaticallyUpdate -bool false
+defaults write com.docker.docker SUEnableAutomaticChecks -bool false
+
+# ---------------------------------------------------------------------------------------------------------------------
+# GPG settings
+# ---------------------------------------------------------------------------------------------------------------------
+gpg-connect-agent reloadagent /bye
+# Import known keys
+gpg --import {{ .chezmoi.sourceDir }}/keys/* 
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Gopass settings
+# ---------------------------------------------------------------------------------------------------------------------
+yes | gopass-jsonapi configure --browser firefox --path "~/.config/gopass" --manifest-path "~/Library/Application Support/Mozilla/NativeMessagingHosts/com.justwatch.gopass.json" --global false
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Homebrew settings
+# ---------------------------------------------------------------------------------------------------------------------
+# https://github.com/Homebrew/homebrew-autoupdate/issues/10
+mkdir -p ~/Library/LaunchAgents
+# https://github.com/Homebrew/homebrew-autoupdate/issues/14
+sudo touch ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
+sudo chown $(whoami) ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
+# Auto-upgrade apps every 24h
+brew autoupdate delete && brew autoupdate start 86400 --upgrade
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Moom settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall Moom
+# Disable automatic updates
+defaults write com.manytricks.Moom SUEnableAutomaticChecks -bool false
+# Run as faceless mode
+defaults write com.manytricks.Moom "Application Mode" -int 2
+
+# ---------------------------------------------------------------------------------------------------------------------
+# OnlyOffice settings
+# ---------------------------------------------------------------------------------------------------------------------
+killall ONLYOFFICE
+# Disable automatic updates
+defaults write asc.onlyoffice.ONLYOFFICE SUEnableAutomaticChecks -bool false
+# Set dark theme
+defaults write asc.onlyoffice.ONLYOFFICE "asc_user_ui_theme" -string "theme-dark"
+# Set user name
+defaults write asc.onlyoffice.ONLYOFFICE "asc_user_name_app" -string "{{ .fullname }}"
+
+{{ end -}}

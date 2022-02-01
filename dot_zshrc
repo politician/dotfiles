@@ -99,7 +99,7 @@ export PATH=$PATH:$GOPATH/bin
 # ---------------------------------------------------------------------------------------------------------------------
 # GPG/SSH
 # ---------------------------------------------------------------------------------------------------------------------
-#alias pinentry="pinentry-mac"
+alias pinentry="pinentry-mac"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent

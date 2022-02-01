@@ -1,0 +1,196 @@
+{
+  /************/
+  /* HTML/CSS */
+  /************/
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascript",
+    "javascriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (Eex)"
+  ],
+  /**********/
+  /* ESLint */
+  /**********/
+  "eslint.alwaysShowStatus": true,
+  "eslint.packageManager": "yarn",
+  "eslint.validate": ["vue", "html", "javascript", "typescript"],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  /************/
+  /* Markdown */
+  /************/
+  "markdown.preview.fontFamily": "Calibri, Roboto, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif",
+  /*************/
+  /* Terraform */
+  /*************/
+  "terraform.languageServer": {
+    "external": true,
+    "pathToBinary": "",
+    "args": ["serve"],
+    "maxNumberOfProblems": 100,
+    "trace.server": "off"
+  },
+  /*******/
+  /* Vue */
+  /*******/
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "attrsSorter.order": [
+    "is",
+    "v-for",
+    "v-if",
+    "v-else-if",
+    "v-else",
+    "v-show",
+    "v-cloak",
+    "v-once",
+    "v-pre",
+    "id",
+    "ref",
+    "key",
+    "slot",
+    "v-model",
+    "v-model.+",
+    "v-bind",
+    "v-bind.+",
+    ":.+",
+    "v-text",
+    "v-text.+",
+    "v-html",
+    "v-html.+",
+    "class",
+    "v-on.+",
+    "@.+",
+    "name",
+    "data-.+",
+    "ng-.+",
+    "src",
+    "for",
+    "type",
+    "href",
+    "values",
+    "title",
+    "alt",
+    "role",
+    "aria-.+",
+    "$unknown$"
+  ],
+  /*****************/
+  /* Spell-checker */
+  /*****************/
+  "cSpell.userWords": [
+    "Barissat",
+    "Copybara",
+    "Finalizers",
+    "Keybase",
+    "Kubernetes",
+    "Octokit",
+    "Oliv'r",
+    "Polystartup",
+    "Romain",
+    "astack",
+    "bara",
+    "builtins",
+    "finalizer",
+    "iife",
+    "kanban",
+    "olivr",
+    "repos",
+    "symlink"
+  ],
+  "cSpell.ignorePaths": [
+    "**/node_modules",
+    "**/.git",
+    "**/vendor",
+    "**/.terraform",
+    "**/dist"
+  ],
+  /*******************/
+  /* Code formatting */
+  /*******************/
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[terraform]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "typescript.extension.sortImports.sortOnSave": true,
+  "typescript.extension.sortImports.quoteStyle": "double",
+  /************/
+  /* Terminal */
+  /************/
+  "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.env.osx": {
+    "STARSHIP_CONFIG": "${env:HOME}/.config/starship.vscode.toml",
+    "FIG_NEW_SESSION": "1"
+  },
+  /**********/
+  /* Editor */
+  /**********/
+  "editor.fontFamily": "'Rec Mono Duotone', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontLigatures": "'ss01','ss03', 'ss06'",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.iconTheme": "vscode-icons",
+  "cSpell.enableFiletypes": ["!plaintext"],
+  "terminal.integrated.confirmOnExit": true,
+  "files.associations": {
+    "*.tfvars": "terraform",
+    ".tflint.hcl": "terraform",
+    "*.tf.tpl": "terraform",
+    ".env": "shellscript",
+    "*.yaml.tpl": "helm",
+    "*.yml.tpl": "helm",
+    "*.hcl": "terraform"
+  },
+  "redhat.telemetry.enabled": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vs-kubernetes": {
+    "vs-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
+    "vs-kubernetes.helm-path": "/usr/local/bin/helm",
+    "vs-kubernetes.knownKubeconfigs": [
+      "/Users/romain/Downloads/caesar-kubeconfig.yaml"
+    ],
+    "vs-kubernetes.kubeconfig": "/Users/romain/Downloads/caesar-kubeconfig.yaml"
+  },
+  "shellcheck.customArgs": ["-x"],
+  "editor.accessibilitySupport": "off",
+  "go.toolsManagement.autoUpdate": true
+}

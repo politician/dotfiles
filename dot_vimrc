@@ -19,7 +19,7 @@ set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
-set ttyfast
+set ttyfast                     " Optimize for fast terminal connections
 
 " do not hide markdown
 set conceallevel=0
@@ -39,23 +39,25 @@ set complete-=i
 set showmatch
 set smarttab
 
-
-
-set tabstop=4
-set shiftwidth=4
+" Make tabs as wide as two spaces
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
-set nrformats-=octal
-set shiftround
-
 " In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-"  set mouse+=a
-"endif
-set clipboard=unnamed
+if has('mouse')
+  set mouse=a
+endif
 
-" Just go out in insert mode
-imap jk <ESC>l
+" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+" yank to clipboard
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
 
 " Show 120 character line limit
 if exists('+colorcolumn')
@@ -65,37 +67,21 @@ else
 endif
 
 " ----------------------------------------- "
-" File Type settings 			    		"
+" File Type settings          			    		"
 " ----------------------------------------- "
 
-au BufNewFile,BufRead *.vim setlocal noet ts=4 sw=4 sts=4
-au BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
-au BufNewFile,BufRead *.md setlocal spell noet ts=4 sw=4
+au BufNewFile,BufRead *.md setlocal spell noet ts=2 sw=2
 au BufNewFile,BufRead *.yml,*.yaml setlocal expandtab ts=2 sw=2
-au BufNewFile,BufRead *.cpp setlocal expandtab ts=2 sw=2
-au BufNewFile,BufRead *.hpp setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.json setlocal expandtab ts=2 sw=2
-au BufNewFile,BufRead *.jade setlocal expandtab ts=2 sw=2
 
 augroup filetypedetect
-  au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
   au BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
 augroup END
 
-au FileType nginx setlocal noet ts=4 sw=4 sts=4
-
-" mutt mail line wrapping
-au BufRead /tmp/mutt-* set textwidth=80
+au FileType nginx setlocal noet ts=2 sw=2 sts=2
 
 " Go settings
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
-" autocmd BufEnter *.go colorscheme nofrils-dark
-
-" scala settings
-autocmd BufNewFile,BufReadPost *.scala setl shiftwidth=2 expandtab
-
-" lua settings
-autocmd BufNewFile,BufRead *.lua setlocal noet ts=4 sw=4 sts=4
 
 " Dockerfile settings
 autocmd FileType dockerfile set noexpandtab
@@ -114,28 +100,8 @@ autocmd BufNewFile,BufRead *.md,*.txt,*.adoc setlocal textwidth=80 fo+=2t ts=2 s
 " toml settings
 au BufRead,BufNewFile MAINTAINERS,*.toml set ft=toml formatprg=toml-fmt
 
-au BufRead,BufNewFile Fastfile,Appfile,Podfile set ft=ruby
-
 " hcl settings
 au BufRead,BufNewFile *.workflow set ft=hcl
-
-" mips settings
-au BufRead,BufNewFile *.mips set ft=mips
-
-" settings for njk
-au BufRead,BufNewFile *.njk,*.hbs set ft=html
-
-" Binary settings: edit binary using xxd-format
-augroup Binary
-  au!
-  au BufReadPre  *.bin let &bin=1
-  au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
-  au BufWritePre *.bin if &bin | %!xxd -r
-  au BufWritePre *.bin endif
-  au BufWritePost *.bin if &bin | %!xxd
-  au BufWritePost *.bin set nomod | endif
-augroup END
 
 " spell check for git commits
 autocmd FileType gitcommit setlocal spell

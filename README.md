@@ -10,7 +10,10 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician
 ```
 
-- Open Alfred, click _Request Permissions_ in _General_
+My personal todo list of manual actions:
+
+- [ ] Open Alfred, click _Request Permissions_ in _General_
+- [ ] Connect to Firefox sync or copy profile folder(open _about:profiles_)
 
 Once everything is setup, reboot!
 
@@ -46,8 +49,7 @@ git commit
 
 This repo includes scripts to
 [install](run_once_before_1-install-packages-darwin.sh.tmpl) as well as
-[build](run_once_before_2-build-apps-darwin.sh.tmpl) all the apps I need to
-work.
+[build](run_once_before_2-build-apps-darwin.sh.tmpl) all the apps that need to be.
 
 I try to choose OSS apps over commercial ones unless the experience is too degraded or it prevents me from doing my work properly.
 
@@ -74,5 +76,5 @@ If you want to fork this repo and modify it for your own personal/commercial usa
 
 Before you apply any settings, don't forget to:
 
-- [Change the settings for chezmoi](.chezmoi.toml.tmpl)
+- [Customize chezmoi settings](.chezmoi.toml.tmpl)
 - Remove my encrypted files and eventually re-add your own. See which files are encrypted  with `find $(chezmoi source-path) -type f -name "encrypted*.asc"`
