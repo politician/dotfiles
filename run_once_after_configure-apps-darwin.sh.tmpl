@@ -2,6 +2,12 @@
 
 #!/bin/bash
 
+{{ if eq .chezmoi.arch "arm64" }}
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else }}
+  eval "$(/usr/local/bin/brew shellenv)"
+{{ end }}
+
 osascript -e 'tell application "System Preferences" to quit'
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -267,5 +273,10 @@ codium --install-extension Tyriar.sort-lines
 codium --install-extension vincaslt.highlight-matching-tag
 codium --install-extension vscode-icons-team.vscode-icons
 codium --install-extension wix.vscode-import-cost
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Make chezmoi use Git with SSH
+# ---------------------------------------------------------------------------------------------------------------------
+chezmoi cd && git remote set-url origin $(git remote get-url origin | sed -Ene's#https://([^/]*)/([^/]*/.*.git)#git@\1:\2#p')
 
 {{ end -}}

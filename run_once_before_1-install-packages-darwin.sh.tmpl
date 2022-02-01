@@ -5,12 +5,13 @@
 # Install homebrew
 if [ -z ${HOMEBREW_PREFIX+x} ]; then
   sudo yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 {{ if eq .chezmoi.arch "arm64" }}
   eval "$(/opt/homebrew/bin/brew shellenv)"
 {{ else }}
   eval "$(/usr/local/bin/brew shellenv)"
 {{ end }}
-fi
 
 # Install Rosetta on m1
 {{ if eq .chezmoi.arch "arm64" }}
@@ -187,6 +188,9 @@ EOF
 mas install 497799835 &>/dev/null &
 
 # Import known keys
-gpg --import {{ .chezmoi.sourceDir }}/keys/* 
+gpg --import {{ .chezmoi.sourceDir }}/keys/*
+alias pinentry="pinentry-mac"
+export GPG_TTY=$(tty)
+gpg-connect-agent reloadagent /bye
 
 {{ end -}}

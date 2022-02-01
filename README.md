@@ -6,9 +6,16 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
 
 ## Setup a new mac
 
+Install command line tools
+
 ```sh
 xcode-select --install
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician --ssh
+```
+
+Apply dotfiles
+
+```sh
+sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician
 ```
 
 My personal todo list of manual actions:
