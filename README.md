@@ -6,24 +6,34 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
 
 ## Setup a new mac
 
-Install command line tools
+1. Install command line tools
 
-```sh
-xcode-select --install
-```
+    ```sh
+    xcode-select --install
+    ```
 
-Apply dotfiles
+2. Insert Smart Card (Yubikey, Ledger, etc.)
 
-```sh
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply politician
-```
+3. Install Homebrew, GPG, Chezmoi and launch configuration
 
-My personal todo list of manual actions:
+    ```sh
+    # Install Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    [[ $(arch) == "arm64" ]] && eval "$(/opt/homebrew/bin/brew shellenv)" || eval "$(/usr/local/bin/brew shellenv)"
+    
+    # Install GPG and Chezmoi
+    brew install gpg chezmoi
 
-- [ ] Open Alfred, click _Request Permissions_ in _General_
-- [ ] Connect to Firefox sync or copy profile folder (open _about:profiles_)
+    # Use configuration from this repo
+    chezmoi init politician --apply --ssh
+    ```
 
-Once everything is setup, reboot!
+4. My personal todo list of manual actions:
+
+    - [ ] This script will open, Alfred, Moom, Docker Desktop, grant them the needed permissions and enable start at boot
+    - [ ] Reboot `sudo shutdown -r now`
+    - [ ] Connect to Firefox sync or copy profile folder (open _about:profiles_)
+    - [ ] Install Xcode `mas install 497799835` (was removed from this script because the 12GB+ download can be slow as hell)
 
 ### Pull and apply latest changes from this repo
 
@@ -51,6 +61,21 @@ Commit changes
 chezmoi cd
 git add .
 git commit
+```
+
+### Before formatting a mac
+
+Make sure all files are up to date with chezmoi
+
+```sh
+chezmoi re-add
+```
+
+Check git status and eventually commit
+
+```sh
+chezmoi cd
+git status
 ```
 
 ## Applications

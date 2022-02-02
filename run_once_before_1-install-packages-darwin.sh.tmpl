@@ -1,17 +1,12 @@
-
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
-# Install homebrew
-if [ -z ${HOMEBREW_PREFIX+x} ]; then
-  sudo yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+# Import known keys
+gpg --import {{ .chezmoi.sourceDir }}/keys/*
+# Link secret keys to Smart Card (Yubikey, Ledger, etc.)
+gpg-connect-agent "scd serialno" "learn --force" /bye
 
-{{ if eq .chezmoi.arch "arm64" }}
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else }}
-  eval "$(/usr/local/bin/brew shellenv)"
-{{ end }}
+
+{{- if (eq .chezmoi.os "darwin") -}}
 
 # Install Rosetta on m1
 {{ if eq .chezmoi.arch "arm64" }}
@@ -183,14 +178,5 @@ mas "The Unarchiver", id: 425424353
 #mas "Xcode", id: 497799835
 mas "XMind", id: 1327661892
 EOF
-
-# Install Xcode in background because the 12GB+ download can be slow as hell
-mas install 497799835 &>/dev/null &
-
-# Import known keys
-gpg --import {{ .chezmoi.sourceDir }}/keys/*
-alias pinentry="pinentry-mac"
-export GPG_TTY=$(tty)
-gpg-connect-agent reloadagent /bye
 
 {{ end -}}

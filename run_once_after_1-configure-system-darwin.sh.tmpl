@@ -85,6 +85,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Empty Trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Remove CMD+Space shortcut for Spotlight (So Alfred can use it)
+/usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c "Delete :AppleSymbolicHotKeys:64"
+/usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c "Add :AppleSymbolicHotKeys:64:enabled bool false"
 
 killall Finder
 
@@ -169,114 +172,5 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdate
 sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ScheduleFrequency -int 1
 # Install app updates automatically
 defaults write com.apple.commerce AutoUpdate -bool true
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Alfred settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall Alfred
-# Sync settings on iCloud
-defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "~/Library/Mobile Documents/com~apple~CloudDocs/Settings/Alfred"
-open /Applications/Alfred*
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Amphetamine settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall Amphetamine
-# Start session as soon as Amphetamine starts
-defaults write com.if.Amphetamine "Start Session At Launch" -bool true
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Docker settings
-# ---------------------------------------------------------------------------------------------------------------------
-# Disable automatic updates
-killall Docker
-defaults write com.docker.docker SUAutomaticallyUpdate -bool false
-defaults write com.docker.docker SUEnableAutomaticChecks -bool false
-open -a Docker
-
-# ---------------------------------------------------------------------------------------------------------------------
-# GPG settings
-# ---------------------------------------------------------------------------------------------------------------------
-gpg-connect-agent reloadagent /bye
-# Import known keys
-#gpg --import {{ .chezmoi.sourceDir }}/keys/* 
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Gopass settings
-# ---------------------------------------------------------------------------------------------------------------------
-yes | gopass-jsonapi configure --browser firefox --path "~/.config/gopass" --manifest-path "~/Library/Application Support/Mozilla/NativeMessagingHosts/com.justwatch.gopass.json" --global false
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Homebrew settings
-# ---------------------------------------------------------------------------------------------------------------------
-# https://github.com/Homebrew/homebrew-autoupdate/issues/10
-mkdir -p ~/Library/LaunchAgents
-# https://github.com/Homebrew/homebrew-autoupdate/issues/14
-sudo touch ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
-sudo chown $(whoami) ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
-# Auto-upgrade apps every 24h
-brew autoupdate delete && brew autoupdate start 86400 --upgrade
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Moom settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall Moom
-# Disable automatic updates
-defaults write com.manytricks.Moom SUEnableAutomaticChecks -bool false
-# Run as faceless mode
-defaults write com.manytricks.Moom "Application Mode" -int 2
-open -a Moom
-
-# ---------------------------------------------------------------------------------------------------------------------
-# OnlyOffice settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall ONLYOFFICE
-# Disable automatic updates
-defaults write asc.onlyoffice.ONLYOFFICE SUEnableAutomaticChecks -bool false
-# Set dark theme
-defaults write asc.onlyoffice.ONLYOFFICE "asc_user_ui_theme" -string "theme-dark"
-# Set user name
-defaults write asc.onlyoffice.ONLYOFFICE "asc_user_name_app" -string "{{ .fullname }}"
-
-# ---------------------------------------------------------------------------------------------------------------------
-# VSCodium settings
-# ---------------------------------------------------------------------------------------------------------------------
-codium --install-extension aaron-bond.better-comments
-codium --install-extension aprilandjan.ascii-tree-generator
-codium --install-extension BazelBuild.vscode-bazel
-codium --install-extension bungcip.better-toml
-codium --install-extension christian-kohler.path-intellisense
-codium --install-extension DavidAnson.vscode-markdownlint
-codium --install-extension debens.sort-js-object
-codium --install-extension ecmel.vscode-html-css
-codium --install-extension EditorConfig.EditorConfig
-codium --install-extension firefox-devtools.vscode-firefox-debug
-codium --install-extension golang.go
-codium --install-extension GraphQL.vscode-graphql
-codium --install-extension hashicorp.terraform
-codium --install-extension hilleer.yaml-plus-json
-codium --install-extension miclo.sort-typescript-imports
-codium --install-extension mrmlnc.vscode-attrs-sorter
-codium --install-extension ms-azuretools.vscode-docker
-codium --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-codium --install-extension nrwl.angular-console
-codium --install-extension PascalReitermann93.vscode-yaml-sort
-codium --install-extension redhat.vscode-commons
-codium --install-extension redhat.vscode-yaml
-codium --install-extension richie5um2.vscode-sort-json
-codium --install-extension robertoachar.vscode-essentials-snippets
-codium --install-extension SimonSiefke.svg-preview
-codium --install-extension streetsidesoftware.code-spell-checker
-codium --install-extension Tchoupinax.tilt
-codium --install-extension timonwong.shellcheck
-codium --install-extension Tyriar.sort-lines
-codium --install-extension vincaslt.highlight-matching-tag
-codium --install-extension vscode-icons-team.vscode-icons
-codium --install-extension wix.vscode-import-cost
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Make chezmoi use Git with SSH
-# ---------------------------------------------------------------------------------------------------------------------
-chezmoi cd && git remote set-url origin $(git remote get-url origin | sed -Ene's#https://([^/]*)/([^/]*/.*.git)#git@\1:\2#p')
 
 {{ end -}}
