@@ -1,12 +1,5 @@
-{{- if (eq .chezmoi.os "darwin") -}}
-
 #!/bin/bash
-
-{{ if eq .chezmoi.arch "arm64" }}
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else }}
-  eval "$(/usr/local/bin/brew shellenv)"
-{{ end }}
+{{ if (eq .chezmoi.os "darwin") -}}
 
 osascript -e 'tell application "System Preferences" to quit'
 
@@ -102,58 +95,6 @@ sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
 #sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 #sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 #launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Mail settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall Mail
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Safari settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall Safari
-# Privacy: don’t send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-# Privacy: Enable “Do Not Track”
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
-# Disable AutoFill
-defaults write com.apple.Safari AutoFillFromAddressBook -bool false
-defaults write com.apple.Safari AutoFillPasswords -bool false
-defaults write com.apple.Safari AutoFillCreditCardData -bool false
-defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
-# Update extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-
-# ---------------------------------------------------------------------------------------------------------------------
-# TextEdit settings
-# ---------------------------------------------------------------------------------------------------------------------
-killall TextEdit
-# Set default TextEdit document format as plain text
-defaults write com.apple.TextEdit "RichText" -bool "false"
-# Open and save files as UTF-8
-defaults write com.apple.TextEdit PlainTextEncoding -int 4
-defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Terminal settings
-# ---------------------------------------------------------------------------------------------------------------------
-# Make sure Terminal is using the Basic profile
-defaults write com.apple.Terminal "Default Window Settings" -string Basic
-defaults write com.apple.Terminal "Startup Window Settings" -string Basic
-# Only use UTF-8
-defaults write com.apple.terminal StringEncodings -array 4
-# Set font preferences
-# Use "tell application \"Terminal\" to get the font name of window 1" to get the current font name
-osascript -e "tell application \"Terminal\" to set font name of settings set \"Basic\" to \"MesloLGLNerdFontComplete-Regular\""
-osascript -e "tell application \"Terminal\" to set font size of settings set \"Basic\" to 18"
-# Enable numpad support for Logitech MX Keys
-/usr/libexec/PlistBuddy -c "Delete :'Window Settings':Basic:StrictVTKeypad" ~/Library/Preferences/com.apple.Terminal.plist
-/usr/libexec/PlistBuddy -c "Add :'Window Settings':Basic:StrictVTKeypad bool false" ~/Library/Preferences/com.apple.Terminal.plist
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-chmod -R go-w "$(brew --prefix)/share"
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Software Update settings

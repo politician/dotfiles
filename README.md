@@ -25,12 +25,13 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
     brew install gpg chezmoi
 
     # Use configuration from this repo
-    chezmoi init politician --apply --ssh
+    chezmoi init politician --apply
     ```
 
 4. My personal todo list of manual actions:
 
     - [ ] This script will open, Alfred, Moom, Docker Desktop, grant them the needed permissions and enable start at boot
+    - [ ] Grant Full disk access to Alfred and Terminal
     - [ ] Reboot `sudo shutdown -r now`
     - [ ] Connect to Firefox sync or copy profile folder (open _about:profiles_)
     - [ ] Install Xcode `mas install 497799835` (was removed from this script because the 12GB+ download can be slow as hell)

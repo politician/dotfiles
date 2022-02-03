@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Import known keys
+gpg --import {{ .chezmoi.sourceDir }}/keys/*
+# Link secret keys to Smart Card (Yubikey, Ledger, etc.)
+gpg-connect-agent "scd serialno" "learn --force" /bye
+
+# Install Rosetta on Mac m1
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}
+softwareupdate --install-rosetta --agree-to-license
+{{ end }}

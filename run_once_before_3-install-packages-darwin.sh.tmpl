@@ -1,17 +1,5 @@
 #!/bin/bash
-
-# Import known keys
-gpg --import {{ .chezmoi.sourceDir }}/keys/*
-# Link secret keys to Smart Card (Yubikey, Ledger, etc.)
-gpg-connect-agent "scd serialno" "learn --force" /bye
-
-
-{{- if (eq .chezmoi.os "darwin") -}}
-
-# Install Rosetta on m1
-{{ if eq .chezmoi.arch "arm64" }}
-softwareupdate --install-rosetta --agree-to-license
-{{ end }}
+{{ if (eq .chezmoi.os "darwin") -}}
 
 # Close App Store apps in case this script updates them
 killall Amphetamine iMovie OneDrive "The Unarchiver" Xcode XMind
@@ -58,8 +46,6 @@ brew "git-delta"
 brew "gnu-sed"
 brew "gnupg"
 brew "go"
-brew "gopass"
-brew "gopass-jsonapi"
 brew "graphviz"
 brew "helm"
 #brew "hey"
