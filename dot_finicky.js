@@ -25,6 +25,11 @@ module.exports = {
       browser: "us.zoom.xos",
     },
     {
+      // Open DevDocs links in DevDocs app
+      match: "https://devdocs.io/*",
+      browser: "DevDocs",
+    },
+    {
       // Open Figma links in Figma app
       match: "https://www.figma.com/file/*",
       browser: "Figma",
