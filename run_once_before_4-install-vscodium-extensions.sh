@@ -9,6 +9,7 @@ codium --install-extension DavidAnson.vscode-markdownlint
 codium --install-extension debens.sort-js-object
 codium --install-extension ecmel.vscode-html-css
 codium --install-extension EditorConfig.EditorConfig
+codium --install-extension esbenp.prettier-vscode
 codium --install-extension firefox-devtools.vscode-firefox-debug
 codium --install-extension golang.go
 codium --install-extension GraphQL.vscode-graphql
