@@ -22,7 +22,7 @@ brew "bat"
 brew "coreutils"
 brew "bats-core"
 brew "checkov"
-brew "chezmoi", link: false
+brew "chezmoi"
 brew "cosign"
 brew "direnv"
 brew "exa"
