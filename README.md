@@ -59,9 +59,9 @@ chezmoi apply
 Commit changes
 
 ```sh
-chezmoi cd
-git add .
-git commit
+chezmoi git add .
+chezmoi git commit
+chezmoi git push
 ```
 
 ### Before formatting a mac
@@ -69,21 +69,26 @@ git commit
 Make sure all files are up to date with chezmoi
 
 ```sh
-# Re-add linked files
-chezmoi cd
-chezmoi re-add
+cd ~
 
 # Export list of brew/cask/mas installed packages
-brew bundle dump
+brew bundle dump --force
+
+# Re-add linked files
+chezmoi re-add
 
 # Export list of VSCodium extensions
-echo "#\!/bin/bash" > run_once_before_4-install-vscodium-extensions.sh && codium --list-extensions | xargs -I{} echo codium --install-extension {} >> run_once_before_4-install-vscodium-extensions.sh
+echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh && codium --list-extensions | xargs -I{} echo codium --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh
 ```
 
 Review changes and commit
 
 ```sh
-git status
+chezmoi git status
+
+chezmoi git add .
+chezmoi git commit
+chezmoi git push
 ```
 
 ## Applications
