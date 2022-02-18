@@ -130,6 +130,9 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -142,6 +145,13 @@
   },
   "typescript.extension.sortImports.sortOnSave": true,
   "typescript.extension.sortImports.quoteStyle": "double",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "sqltools.format": {
+    "linesBetweenQueries": 2,
+    "reservedWordCase": "upper"
+  },
+  "sqltools.results": { "location": "next" },
   /************/
   /* Terminal */
   /************/
@@ -179,6 +189,9 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -192,5 +205,6 @@
   },
   "shellcheck.customArgs": ["-x"],
   "editor.accessibilitySupport": "off",
-  "go.toolsManagement.autoUpdate": true
+  "go.toolsManagement.autoUpdate": true,
+  "workbench.startupEditor": "none"
 }

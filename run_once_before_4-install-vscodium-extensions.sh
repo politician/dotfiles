@@ -1,5 +1,4 @@
 #!/bin/bash
-
 codium --install-extension aaron-bond.better-comments
 codium --install-extension aprilandjan.ascii-tree-generator
 codium --install-extension BazelBuild.vscode-bazel
@@ -19,6 +18,8 @@ codium --install-extension miclo.sort-typescript-imports
 codium --install-extension mrmlnc.vscode-attrs-sorter
 codium --install-extension ms-azuretools.vscode-docker
 codium --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+codium --install-extension mtxr.sqltools
+codium --install-extension mtxr.sqltools-driver-pg
 codium --install-extension nrwl.angular-console
 codium --install-extension PascalReitermann93.vscode-yaml-sort
 codium --install-extension redhat.vscode-commons
