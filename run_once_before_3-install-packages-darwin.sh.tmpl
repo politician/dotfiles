@@ -4,6 +4,9 @@
 # Close App Store apps in case this script updates them
 killall Amphetamine iMovie OneDrive "The Unarchiver" Xcode XMind
 
+# Disable quarantine for casks
+export HOMEBREW_CASK_OPTS=--no-quarantine
+
 brew bundle
 
 {{ end -}}
