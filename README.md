@@ -94,8 +94,8 @@ chezmoi git push
 ## Applications
 
 This repo includes scripts to
-[install](run_once_before_1-install-packages-darwin.sh.tmpl) as well as
-[build](run_once_before_2-build-apps-darwin.sh.tmpl) all the apps that need to be.
+[install](run_once_before_3-install-packages-darwin.sh.tmpl) as well as
+[build](run_once_before_5-build-apps-darwin.sh.tmpl) all the apps that need to be.
 
 I try to choose OSS apps over commercial ones unless the experience is too degraded or it prevents me from doing my work properly.
 
