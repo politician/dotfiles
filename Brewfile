@@ -39,6 +39,7 @@ brew "gopass-jsonapi"
 brew "icu4c", link: true
 brew "graphviz"
 brew "helm"
+brew "http-server"
 brew "jq"
 brew "k3d"
 brew "kind"
