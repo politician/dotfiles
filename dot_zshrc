@@ -72,6 +72,7 @@ alias zshrc="chezmoi edit ~/.zshrc --apply"
 
 fpath=( ~/.zfuncs "${fpath[@]}" )
 freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
+autoload -Uz helm
 autoload -Uz kc
 autoload -Uz ks
 

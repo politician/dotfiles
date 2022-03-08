@@ -1,0 +1,8 @@
+if [ "$1" = "show" ] && [ "$2" = "values" ]; then
+  command helm "$@" | yq
+elif [ "$1" = "show" ] && [ "$2" = "all" ]; then
+  command helm "$@" | glow -
+else
+  command helm "$@"
+fi
+
