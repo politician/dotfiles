@@ -162,6 +162,9 @@ export PATH="$PATH:/Applications/VSCodium.app/Contents/Resources/app/bin"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# https://github.com/volta-cli/volta/issues/927
+volta-migrate --no-create 1>/dev/null 
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Other stuff (may be legacy)
 # ---------------------------------------------------------------------------------------------------------------------
