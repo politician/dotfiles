@@ -120,8 +120,14 @@ export HOMEBREW_CASK_OPTS=--no-quarantine
 # ---------------------------------------------------------------------------------------------------------------------
 alias pinentry="pinentry-mac"
 export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+# SSH with SmartCard (Yubikey/Ledger)
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
 gpgconf --launch gpg-agent
+
+# SSH with secretive
+export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Starship
