@@ -1,7 +1,8 @@
 // Learn more about configuration options: https://github.com/johnste/finicky/wiki/Configuration
 
 module.exports = {
-  defaultBrowser: "Browserosaurus",
+  //defaultBrowser: "Browserosaurus",
+  defaultBrowser: "Firefox",
   options: {
     // Hide the finicky icon from the top bar. Default: false
     hideIcon: true,
