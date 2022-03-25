@@ -1,5 +1,6 @@
 #!/bin/bash
 codium --install-extension aaron-bond.better-comments
+codium --install-extension antfu.smart-clicks
 codium --install-extension aprilandjan.ascii-tree-generator
 codium --install-extension BazelBuild.vscode-bazel
 codium --install-extension bungcip.better-toml
