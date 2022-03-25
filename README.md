@@ -79,6 +79,9 @@ chezmoi re-add
 
 # Export list of VSCodium extensions
 echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh && codium --list-extensions | xargs -I{} echo codium --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh
+
+# Re-add VSCodium settings as multi-arch template
+sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/VSCodium/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_VSCodium/User/settings.json.tmpl
 ```
 
 Review changes and commit

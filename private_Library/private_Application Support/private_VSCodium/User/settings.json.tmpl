@@ -198,9 +198,10 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "terraform-ls.terraformExecPath": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/terraform",
   "vs-kubernetes": {
-    "vs-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
-    "vs-kubernetes.helm-path": "/usr/local/bin/helm",
+    "vs-kubernetes.kubectl-path": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/kubectl",
+    "vs-kubernetes.helm-path": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/helm",
     "vs-kubernetes.knownKubeconfigs": [
       "/Users/romain/Downloads/caesar-kubeconfig.yaml"
     ],
