@@ -77,11 +77,11 @@ brew bundle dump --force
 # Re-add linked files
 chezmoi re-add
 
-# Export list of VSCodium extensions
-echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh && codium --list-extensions | xargs -I{} echo codium --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscodium-extensions.sh
+# Export list of VSCode extensions
+echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh && code --list-extensions | xargs -I{} echo code --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh
 
-# Re-add VSCodium settings as multi-arch template
-sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/VSCodium/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_VSCodium/User/settings.json.tmpl
+# Re-add VSCode settings as multi-arch template
+sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/VSCode/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_VSCode/User/settings.json.tmpl
 ```
 
 Review changes and commit
@@ -113,7 +113,6 @@ Here are the most notable ones:
 | ~~[Kdenlive](https://kdenlive.org)~~ ([No m1 support](https://bugs.kde.org/show_bug.cgi?id=448443)) - Now using iMovie and evaluating [OpenShot](https://github.com/OpenShot/openshot-qt), [Shotcut](https://github.com/mltframework/shotcut) | Premiere    |
 | [OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)                                                                                                                                                                                    | Office      |
 | [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma       |
-| [VSCodium](https://github.com/VSCodium/vscodium)                                                                                                                                                                                              | VS Code     |
 
 ## Configuration
 

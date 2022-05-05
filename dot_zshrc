@@ -58,7 +58,6 @@ source $ZSH/oh-my-zsh.sh
 # ---------------------------------------------------------------------------------------------------------------------
 alias awk="gawk"
 alias cat="bat"
-alias code="codium"
 alias gitdaemon="gitserve"
 alias gitserve="git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose"
 alias kind-reset="kreset"
@@ -144,17 +143,6 @@ unsetopt nomatch
 # TheFuck
 # ---------------------------------------------------------------------------------------------------------------------
 eval "$(thefuck --alias)"
-
-# ---------------------------------------------------------------------------------------------------------------------
-# VSCodium
-# ---------------------------------------------------------------------------------------------------------------------
-export VSCODE_GALLERY_SERVICE_URL='https://marketplace.visualstudio.com/_apis/public/gallery'
-export VSCODE_GALLERY_CACHE_URL='https://vscode.blob.core.windows.net/gallery/index'
-export VSCODE_GALLERY_ITEM_URL='https://marketplace.visualstudio.com/items'
-export VSCODE_GALLERY_CONTROL_URL=''
-export VSCODE_GALLERY_RECOMMENDATIONS_URL=''
-export PATH="$PATH:/Applications/VSCodium.app/Contents/Resources/app/bin"
-#export EDITOR="codium --wait"
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Volta

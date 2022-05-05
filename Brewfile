@@ -136,7 +136,7 @@ cask "suspicious-package"
 cask "timemachineeditor"
 cask "tor-browser"
 cask "vlc"
-cask "vscodium"
+cask "visual-studio-code"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "iMovie", id: 408981434
