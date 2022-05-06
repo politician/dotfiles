@@ -30,8 +30,8 @@ mkdir -p ~/Library/LaunchAgents
 # https://github.com/Homebrew/homebrew-autoupdate/issues/14
 sudo touch ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
 sudo chown $(whoami) ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
-# Auto-upgrade apps every 24h
-brew autoupdate delete && brew autoupdate start 86400 --upgrade
+# Auto-upgrade apps every week
+brew autoupdate delete && brew autoupdate start 604800 --upgrade
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Mail settings

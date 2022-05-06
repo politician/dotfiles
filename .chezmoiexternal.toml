@@ -3,40 +3,40 @@
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
 
 [".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
     type = "archive"
     url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
 
 ["Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/gharlan.alfred-github-workflow"]
     type = "archive"
     url = "https://github.com/gharlan/alfred-github-workflow/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
 
 ["Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/fatih-yavuz.alfred-string-operations"]
     type = "archive"
     url = "https://github.com/fatih-yavuz/alfred-string-operations/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
 
 ["Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/clnt.alfred-tailwindcss-docs"]
     type = "archive"
     url = "https://github.com/clnt/alfred-tailwindcss-docs/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
 
 ["Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/politician.alfred-devdocs"]
     type = "archive"
     url = "https://github.com/politician/alfred-devdocs/archive/master.tar.gz"
     exact = true
     stripComponents = 2
-    refreshPeriod = "168h"
+    refreshPeriod = "672h"
    
