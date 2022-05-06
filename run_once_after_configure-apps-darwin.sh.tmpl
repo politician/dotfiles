@@ -109,6 +109,8 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 # ---------------------------------------------------------------------------------------------------------------------
 # Make chezmoi use Git with SSH
 # ---------------------------------------------------------------------------------------------------------------------
-cd "{{ .chezmoi.sourceDir }}" && git remote set-url origin $(git remote get-url origin | sed -Ene's#https://([^/]*)/([^/]*/.*.git)#git@\1:\2#p')
+cd "{{ .chezmoi.sourceDir }}"
+CHEZMOI_SSH_URL=$(git remote get-url origin | sed -Ene's#https://([^/]*)/([^/]*/.*.git)#git@\1:\2#p')
+[[ -z $CHEZMOI_SSH_URL ]] || git remote set-url origin $CHEZMOI_SSH_URL
 
 {{ end -}}
