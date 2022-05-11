@@ -51,15 +51,11 @@ defaults write com.manytricks.Moom "Application Mode" -int 2
 open -a Moom
 
 # ---------------------------------------------------------------------------------------------------------------------
-# OnlyOffice settings
+# OneDrive settings
 # ---------------------------------------------------------------------------------------------------------------------
-killall ONLYOFFICE
-# Disable automatic updates
-defaults write asc.onlyoffice.ONLYOFFICE SUEnableAutomaticChecks -bool false
-# Set dark theme
-defaults write asc.onlyoffice.ONLYOFFICE "asc_user_ui_theme" -string "theme-dark"
-# Set user name
-defaults write asc.onlyoffice.ONLYOFFICE "asc_user_name_app" -string "{{ .fullname }}"
+# iPhone backups are located in OneDrive
+mkdir -p ~/Library/Application\ Support/MobileSync
+ln -s ~/Library/CloudStorage/OneDrive-Personal/iPhone\ backup ~/Library/Application\ Support/MobileSync/Backup
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Safari settings

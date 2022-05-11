@@ -20,6 +20,7 @@ brew "autoconf"
 brew "automake"
 brew "awscli"
 brew "bat"
+brew "bitwarden-cli"
 brew "coreutils"
 brew "bats-core"
 brew "checkov"
@@ -119,7 +120,6 @@ cask "licecap"
 cask "logitech-options"
 cask "macfuse"
 cask "moom"
-cask "onlyoffice"
 cask "postman"
 cask "qbittorrent"
 cask "qlcolorcode"
@@ -139,7 +139,11 @@ cask "vlc"
 cask "visual-studio-code"
 cask "zoom"
 mas "Amphetamine", id: 937984704
+mas "Bitwarden", id: 1352778147
 mas "iMovie", id: 408981434
 mas "OneDrive", id: 823766827
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word", id: 462054704
+mas "Microsoft Excel", id: 462058435
 mas "The Unarchiver", id: 425424353
 mas "XMind", id: 1327661892

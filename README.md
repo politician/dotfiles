@@ -111,7 +111,7 @@ Here are the most notable ones:
 | [Inkscape](https://gitlab.com/inkscape/inkscape)                                                                                                                                                                                              | Illustrator |
 | [Jitsi Meet](https://github.com/jitsi/jitsi-meet)                                                                                                                                                                                             | Zoom        |
 | ~~[Kdenlive](https://kdenlive.org)~~ ([No m1 support](https://bugs.kde.org/show_bug.cgi?id=448443)) - Now using iMovie and evaluating [OpenShot](https://github.com/OpenShot/openshot-qt), [Shotcut](https://github.com/mltframework/shotcut) | Premiere    |
-| [OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)                                                                                                                                                                                    | Office      |
+| ~~[OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)~~ (I have an Office subscription)                                                                                                                                                | Office      |
 | [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma       |
 
 ## Configuration
