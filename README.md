@@ -114,9 +114,9 @@ Here are the most notable ones:
 | ~~[OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)~~ (I have an Office subscription)                                                                                                                                                | Office      |
 | [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma       |
 
-## Configuration
+## Mac OS configuration
 
-This repo includes a [script to configure](run_once_after_configure-apps.sh.tmpl) my Mac OS and several applications settings.
+This repo includes a [script to configure](run_once_after_configure-apps-darwin.sh.tmpl) my Mac OS and several applications settings.
 
 ## Forking
 
