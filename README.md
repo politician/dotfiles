@@ -104,7 +104,7 @@ I try to choose OSS apps over commercial ones unless the experience is too degra
 
 Here are the most notable ones:
 
-| OSS/Alternative                                                                                                                                                                                                                                           | Proprietary |
+| OSS/ Free Alternative                                                                                                                                                                                                                                           | Proprietary/Commercial |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | [NX Studio](https://www.nikonusa.com/en/nikon-products/imaging-software/nx-studio.page)                                                                                                                                                                                       | Lightroom   |
 | [Gimp](https://github.com/GNOME/gimp) & [Krita](https://github.com/KDE/krita)                                                                                                                                                                 | Photoshop   |
