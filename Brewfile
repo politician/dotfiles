@@ -156,5 +156,6 @@ mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "OneDrive", id: 823766827
+mas "StopTheMadness", id: 1376402589
 mas "The Unarchiver", id: 425424353
 mas "XMind", id: 1327661892
