@@ -11,6 +11,7 @@ code --install-extension ecmel.vscode-html-css
 code --install-extension EditorConfig.EditorConfig
 code --install-extension esbenp.prettier-vscode
 code --install-extension firefox-devtools.vscode-firefox-debug
+code --install-extension fnando.linter
 code --install-extension GitHub.copilot
 code --install-extension golang.go
 code --install-extension GraphQL.vscode-graphql
@@ -19,6 +20,7 @@ code --install-extension hilleer.yaml-plus-json
 code --install-extension miclo.sort-typescript-imports
 code --install-extension mintlify.document
 code --install-extension mrmlnc.vscode-attrs-sorter
+code --install-extension mrmlnc.vscode-json5
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension mtxr.sqltools

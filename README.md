@@ -81,7 +81,7 @@ chezmoi re-add
 echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh && code --list-extensions | xargs -I{} echo code --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh
 
 # Re-add VSCode settings as multi-arch template
-sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/VSCode/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_VSCode/User/settings.json.tmpl
+sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/Code/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_Code/User/settings.json.tmpl
 ```
 
 Review changes and commit
@@ -104,15 +104,15 @@ I try to choose OSS apps over commercial ones unless the experience is too degra
 
 Here are the most notable ones:
 
-| OSS/ Free Alternative                                                                                                                                                                                                                                           | Proprietary/Commercial |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [NX Studio](https://www.nikonusa.com/en/nikon-products/imaging-software/nx-studio.page)                                                                                                                                                                                       | Lightroom   |
-| [Gimp](https://github.com/GNOME/gimp) & [Krita](https://github.com/KDE/krita)                                                                                                                                                                 | Photoshop   |
-| [Inkscape](https://gitlab.com/inkscape/inkscape)                                                                                                                                                                                              | Illustrator |
-| [Jitsi Meet](https://github.com/jitsi/jitsi-meet)                                                                                                                                                                                             | Zoom        |
-| ~~[Kdenlive](https://kdenlive.org)~~ ([No m1 support](https://bugs.kde.org/show_bug.cgi?id=448443)) - Now using iMovie and evaluating [OpenShot](https://github.com/OpenShot/openshot-qt), [Shotcut](https://github.com/mltframework/shotcut) | Premiere    |
-| ~~[OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)~~ (I have an Office subscription)                                                                                                                                                | Office      |
-| [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma       |
+| OSS/ Free Alternative                                                                                                                                                                                                                         | Proprietary/Commercial |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [NX Studio](https://www.nikonusa.com/en/nikon-products/imaging-software/nx-studio.page)                                                                                                                                                       | Lightroom              |
+| [Gimp](https://github.com/GNOME/gimp) & [Krita](https://github.com/KDE/krita)                                                                                                                                                                 | Photoshop              |
+| [Inkscape](https://gitlab.com/inkscape/inkscape)                                                                                                                                                                                              | Illustrator            |
+| [Jitsi Meet](https://github.com/jitsi/jitsi-meet)                                                                                                                                                                                             | Zoom                   |
+| ~~[Kdenlive](https://kdenlive.org)~~ ([No m1 support](https://bugs.kde.org/show_bug.cgi?id=448443)) - Now using iMovie and evaluating [OpenShot](https://github.com/OpenShot/openshot-qt), [Shotcut](https://github.com/mltframework/shotcut) | Premiere               |
+| ~~[OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)~~ (I have an Office subscription)                                                                                                                                                | Office                 |
+| [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma                  |
 
 ## Mac OS configuration
 
