@@ -77,9 +77,6 @@ brew bundle dump --force
 # Re-add linked files
 chezmoi re-add
 
-# Export list of VSCode extensions
-echo "#\!/bin/bash" > $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh && code --list-extensions | xargs -I{} echo code --install-extension {} >> $(chezmoi source-path)/run_once_before_4-install-vscode-extensions.sh
-
 # Re-add VSCode settings as multi-arch template
 sed 's|'"$(brew --prefix)"'|{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}|' ~/Library/Application\ Support/Code/User/settings.json > $(chezmoi source-path)/private_Library/private_Application\ Support/private_Code/User/settings.json.tmpl
 ```
