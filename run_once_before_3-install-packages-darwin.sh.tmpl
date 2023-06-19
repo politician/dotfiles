@@ -10,3 +10,9 @@ export HOMEBREW_CASK_OPTS=--no-quarantine
 brew bundle
 
 {{ end -}}
+
+# Install latest stable version of Node.js
+volta install node
+
+# Install latest versions of global Node.js packages
+npm install -g stylelint@latest textlint@latest typescript@latest
