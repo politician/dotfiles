@@ -56,7 +56,6 @@ source $ZSH/oh-my-zsh.sh
 # ---------------------------------------------------------------------------------------------------------------------
 # Aliases & functions
 # ---------------------------------------------------------------------------------------------------------------------
-alias awk="gawk"
 alias cat="bat"
 alias gitdaemon="gitserve"
 alias gitserve="git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose"
