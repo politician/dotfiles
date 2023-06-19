@@ -131,11 +131,13 @@ export GPG_TTY=$(tty)
 # SSH
 # ---------------------------------------------------------------------------------------------------------------------
 # SSH with secretive
-# export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+# It is more user-friendly than using a GPG subkey because I don't need to have
+# my hardware key with me to SSH or sign commits.
+export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 # SSH with SmartCard (Yubikey/Ledger)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# gpgconf --launch gpg-agent
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Starship
