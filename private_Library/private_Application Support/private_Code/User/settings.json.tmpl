@@ -1,30 +1,21 @@
 {
-  /************/
-  /* HTML/CSS */
-  /************/
-  "auto-close-tag.activationOnLanguage": [
-    "xml",
-    "php",
-    "blade",
-    "ejs",
-    "jinja",
-    "javascript",
-    "javascriptreact",
-    "plaintext",
-    "markdown",
-    "vue",
-    "liquid",
-    "erb",
-    "lang-cfml",
-    "cfml",
-    "HTML (Eex)"
-  ],
   /**********/
   /* ESLint */
   /**********/
   "eslint.alwaysShowStatus": true,
   "eslint.packageManager": "yarn",
-  "eslint.validate": ["vue", "html", "javascript", "typescript"],
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "json5",
+    "jsonc",
+    "toml",
+    "typescript",
+    "vue",
+    "yaml"
+  ],
   "eslint.workingDirectories": [
     {
       "mode": "auto"
@@ -47,7 +38,6 @@
   /*******/
   /* Vue */
   /*******/
-  "vetur.format.defaultFormatter.js": "prettier-eslint",
   "attrsSorter.order": [
     "is",
     "v-for",
@@ -94,6 +84,7 @@
   "cSpell.userWords": [
     "astack",
     "automerge",
+    "autosquash",
     "bara",
     "Barissat",
     "builtins",
@@ -110,7 +101,8 @@
     "Polystartup",
     "repos",
     "Romain",
-    "symlink"
+    "symlink",
+    "vitepress"
   ],
   "cSpell.ignorePaths": [
     "**/node_modules",
@@ -126,20 +118,10 @@
   "editor.formatOnType": true,
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[helm]": {
     "editor.formatOnSave": false
   },
@@ -156,6 +138,8 @@
     "reservedWordCase": "upper"
   },
   "sqltools.results": { "location": "next" },
+  "rewrap.autoWrap.enabled": true,
+  "rewrap.onSave": true, //https://github.com/stkb/Rewrap/issues/165
   /************/
   /* Terminal */
   /************/
@@ -171,13 +155,14 @@
   "editor.fontFamily": "'Rec Mono Duotone', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontLigatures": "'ss01','ss03', 'ss06'",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
-  "vsicons.dontShowNewVersionMessage": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "file-icons",
   "cSpell.enableFiletypes": ["!plaintext"],
   "terminal.integrated.confirmOnExit": true,
   "files.associations": {
@@ -191,15 +176,6 @@
     ".yamllint": "yaml"
   },
   "redhat.telemetry.enabled": false,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "terraform-ls.terraformExecPath": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/terraform",
   "vs-kubernetes": {
     "vs-kubernetes.kubectl-path": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/kubectl",
@@ -214,11 +190,38 @@
   "go.toolsManagement.autoUpdate": true,
   "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {},
+  "workbench.editor.openSideBySideDirection": "down",
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": false
-  }
+    "markdown": true
+  },
+  "editor.renderWhitespace": "all",
+  "zenMode.fullScreen": false,
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredLightColorTheme": "Atom One Light",
+  "workbench.preferredDarkColorTheme": "One Dark Pro",
+  "workbench.colorTheme": "One Dark Pro",
+  "vale.valeCLI.path": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/vale",
+  "shellcheck.executablePath": "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}/bin/shellcheck",
+  "linter.linters": {
+    "eslint": {
+      "enabled": false
+    },
+    "markdownlint": {
+      "enabled": false
+    },
+    "shellcheck": {
+      "enabled": false
+    },
+    "stylelint": {
+      "enabled": false
+    },
+    "vale": {
+      "enabled": false
+    }
+  },
+  "sourcegraph.url": "https://sourcegraph.com"
 }
