@@ -31,6 +31,7 @@ mkdir -p ~/Library/LaunchAgents
 sudo touch ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
 sudo chown $(whoami) ~/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist
 # Auto-upgrade apps every week
+echo "Deleting any autoupdate plist before enabling autoupdate"
 brew autoupdate delete && brew autoupdate start 604800 --upgrade
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -83,7 +84,7 @@ defaults write com.apple.Terminal "Startup Window Settings" -string Basic
 # Only use UTF-8
 defaults write com.apple.terminal StringEncodings -array 4
 # Set font preferences
-# Use "tell application \"Terminal\" to get the font name of window 1" to get the current font name
+# To get the current font name, use: osascript -e "tell application \"Terminal\" to get the font name of window 1"
 osascript -e "tell application \"Terminal\" to set font name of settings set \"Basic\" to \"MesloLGLNerdFontComplete-Regular\""
 osascript -e "tell application \"Terminal\" to set font size of settings set \"Basic\" to 18"
 # Enable numpad support for Logitech MX Keys

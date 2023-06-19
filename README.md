@@ -30,7 +30,7 @@ My dotfiles, managed by [chezmoi](https://github.com/twpayne/chezmoi).
 
 4. My personal todo list of manual actions:
 
-   - [ ] This script will open, Alfred, Moom, Docker Desktop, grant them the needed permissions and enable start at boot
+   - [ ] This script will open, Alfred, Moom, Docker Desktop. You must manually grant them the needed permissions and enable start at boot
    - [ ] Grant Full disk access to Alfred and Terminal
    - [ ] Reboot `sudo shutdown -r now`
    - [ ] Connect to Firefox sync or copy profile folder (open _about:profiles_)
@@ -110,6 +110,7 @@ Here are the most notable ones:
 | ~~[Kdenlive](https://kdenlive.org)~~ ([No m1 support](https://bugs.kde.org/show_bug.cgi?id=448443)) - Now using iMovie and evaluating [OpenShot](https://github.com/OpenShot/openshot-qt), [Shotcut](https://github.com/mltframework/shotcut) | Premiere               |
 | ~~[OnlyOffice](https://github.com/ONLYOFFICE/DesktopEditors)~~ (I have an Office subscription)                                                                                                                                                | Office                 |
 | [Penpot](https://github.com/penpot/penpot)                                                                                                                                                                                                    | Figma                  |
+| [DBeaver](https://dbeaver.io/)                                                                                                                                                                                                                | Navicat                |
 
 ## Mac OS configuration
 
