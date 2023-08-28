@@ -31,9 +31,25 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 ! grep -q pam_tid.so /etc/pam.d/sudo && sudo gsed -i '2iauth        sufficient     pam_tid.so' /etc/pam.d/sudo
 # Disable Gatekeeper
 sudo spctl --master-disable
-# Open an application from the web without being asked
-# https://macos-defaults.com/misc/lsquarantine.html#disable-application-quarantine-message :(
-# defaults write com.apple.LaunchServices LSQuarantine -bool false
+# Disable Airplay receiver
+# https://www.tenable.com/audits/items/CIS_Apple_macOS_13.0_Ventura_v1.0.0_L1.audit:7ec4f921542292406e0217a0e1a6cad6
+defaults -currentHost write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
+# Ensure Secure Keyboard Entry in Terminal is enabled
+defaults write -app Terminal SecureKeyboardEntry -bool true
+
+# ---------------------------------------------------------------------------------------------------------------------
+# AuthorizationDB settings
+# The authorizationdb settings cannot be written to directly, so the plist must be exported out to temporary file
+# ---------------------------------------------------------------------------------------------------------------------
+# Export AuthorizationDB settings to temporary file
+sudo security authorizationdb read system.preferences > /tmp/system.preferences.plist
+
+# Require an administrator password to access system-wide preferences
+# https://www.tenable.com/audits/CIS_Apple_macOS_11_v2.0.0_L1
+sudo defaults write /tmp/system.preferences.plist shared -bool false
+
+# Import AuthorizationDB settings from temporary file
+sudo security authorizationdb write system.preferences < /tmp/system.preferences.plist
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Dock settings
