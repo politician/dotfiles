@@ -1,0 +1,20 @@
+---
+extends: default
+
+import_ignore: ".gitignore"
+
+# Remove the "ignore" key below once this PR is merged
+ignore: node_modules/
+
+rules:
+  truthy:
+    check-keys: false
+
+  # Follow prettier conventions
+  line-length:
+    max: 80
+    level: warning
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+  comments:
+    min-spaces-from-content: 1
