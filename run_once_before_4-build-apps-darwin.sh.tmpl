@@ -10,9 +10,18 @@ $HOMEBREW_PREFIX/opt/qt@5/bin/qmake PGSQL_LIB=$HOMEBREW_PREFIX/opt/libpq/lib/lib
 make -j $(expr $(getconf _NPROCESSORS_ONLN) + 1)
 make install
 
+cd $(mktemp -d)
+
 # PenPot
 nativefier "https://design.penpot.app" --name Penpot --darwin-dark-mode-support
+rm -rf /Applications/Penpot.app
 mv Penpot*/Penpot.app /Applications
 rm -rf Penpot*
 
+# Reclaim
+curl -s https://app.reclaim.ai/img/icons/apple-touch-icon.png -o reclaim.png
+nativefier "https://app.reclaim.ai/tasks" --name Reclaim --darwin-dark-mode-support --single-instance --honest --internal-urls ".*?" --icon reclaim.png
+rm -rf /Applications/Reclaim.app
+mv Reclaim*/Reclaim.app /Applications
+rm -rf reclaim.png Reclaim*
 {{ end -}}
